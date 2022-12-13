@@ -16,3 +16,8 @@ body {
   margin: 0 auto;
   padding: 20px;
 }
+
+.app-wrapper-content {
+  grid-area: c;
+  border-radius: 10px;
+}

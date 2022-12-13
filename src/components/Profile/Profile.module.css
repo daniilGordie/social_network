@@ -1,9 +1,7 @@
-.appContent {
-  grid-area: c;
-  border-radius: 10px;
+.content {
 }
 
-.appContent img {
+.banner {
   object-fit: cover;
   width: 1059px;
   height: 150px;

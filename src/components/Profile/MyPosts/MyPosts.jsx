@@ -9,10 +9,10 @@ function MyPosts() {
       <textarea></textarea>
       <button>Add Post</button>
       <div className={s.posts}>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        <Post message="Hi, how are you?" likeAmount={4} />
+        <Post message="It's my first post" likeAmount={1} />
+        <Post message="I'm learning react" likeAmount={0} />
+        <Post message="Would you want to learn react?" likeAmount={5} />
       </div>
     </>
   )
