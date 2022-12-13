@@ -1,0 +1,17 @@
+.appContent {
+  grid-area: c;
+  border-radius: 10px;
+}
+
+.appContent img {
+  object-fit: cover;
+  width: 1059px;
+  height: 150px;
+  border-radius: 10px;
+}
+
+.posts {
+}
+
+.item {
+}

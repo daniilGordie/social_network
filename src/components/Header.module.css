@@ -1,0 +1,21 @@
+.appHeader {
+  grid-area: h;
+  background-color: blue;
+  border-radius: 10px;
+
+  display: grid;
+
+  grid-template-areas: 'i g';
+  grid-template-columns: 1fr 10fr;
+}
+
+header img {
+  grid-area: i;
+  width: 45px;
+  margin: 20px;
+  border-radius: 5px;
+}
+
+h2 {
+  grid-area: g;
+}
