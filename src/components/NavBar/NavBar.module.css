@@ -5,7 +5,11 @@
   padding: 15px;
 }
 
-.item {
+.item a {
   text-decoration: none;
   color: rgb(246, 240, 240);
+}
+
+.item a.active {
+  color: rgba(27, 25, 25, 0.633);
 }
