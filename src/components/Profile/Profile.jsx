@@ -1,7 +1,8 @@
 import React from 'react'
+import MyPosts from './MyPosts/MyPosts'
 import s from './Profile.module.css'
 
-function MainContent() {
+function Profile() {
   return (
     <div className={s.appContent}>
       <img
@@ -9,14 +10,9 @@ function MainContent() {
         alt="banner"
       />
       <div>ava + descr</div>
-      <div>My posts</div>
-      <div>New Post</div>
-      <div className={s.posts}>
-        <div className={s.item}>Post 1</div>
-        <div className={s.item}>Post 2</div>
-      </div>
+      <MyPosts />
     </div>
   )
 }
 
-export default MainContent
+export default Profile
