@@ -1,0 +1,10 @@
+.banner {
+  object-fit: cover;
+  width: 1059px;
+  height: 150px;
+  border-radius: 10px;
+}
+
+.description_block {
+  padding: 10px;
+}

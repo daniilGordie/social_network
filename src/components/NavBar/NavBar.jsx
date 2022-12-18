@@ -3,31 +3,31 @@ import { NavLink } from 'react-router-dom'
 import s from './NavBar.module.css'
 
 const NavBar = () => {
-  console.log(s)
+  const isActive = ({ isActive }) => (isActive ? s.active : '')
   return (
     <nav className={s.navigation}>
       <div className={s.item}>
-        <NavLink to={'/profile'} activeclassname={s.active}>
+        <NavLink to={'/'} className={isActive}>
           Profile
         </NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to={'/dialogs'} activeclassname={s.active}>
+        <NavLink to={'dialogs'} className={isActive}>
           Messages
         </NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to={'/news'} activeclassname={s.active}>
+        <NavLink to={'news'} className={isActive}>
           News
         </NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to={'/music'} activeclassname={s.active}>
+        <NavLink to={'music'} className={isActive}>
           Music
         </NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to={'/admin'} activeclassname={s.active}>
+        <NavLink to={'admin'} className={isActive}>
           Settings
         </NavLink>
       </div>
