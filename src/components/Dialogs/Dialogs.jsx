@@ -4,6 +4,8 @@ import s from './Dialogs.module.css'
 import Message from './Message/Messsage'
 import DialogItem from './DialogItem/DialogItem'
 
+//TODO: add a text area for chating with each friend
+
 const Dialogs = (props) => {
   const dialogsElements = props.state.dialogData.map((dialog) => (
     <DialogItem name={dialog.name} id={dialog.id} />

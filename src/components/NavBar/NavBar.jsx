@@ -2,6 +2,8 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import s from './NavBar.module.css'
 
+//TODO: Add the area "friends" with icons and names as a sidebar
+
 const NavBar = () => {
   const isActive = ({ isActive }) => (isActive ? s.active : '')
   return (

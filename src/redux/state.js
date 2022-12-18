@@ -1,3 +1,5 @@
+import { rerender } from '../render'
+
 const state = {
   profilePage: {
     posts: [
@@ -6,6 +8,7 @@ const state = {
       { id: 3, message: "I'm learning react", likeAmount: 0 },
       { id: 4, message: 'Would you want to learn react?', likeAmount: 5 },
     ],
+    newPostText: 'vasya is writing',
   },
   dialogPage: {
     dialogData: [
@@ -19,6 +22,23 @@ const state = {
       { id: '3', message: 'Ready-Go' },
     ],
   },
+}
+
+export const addPost = () => {
+  let newPost = {
+    id: 5,
+    message: state.profilePage.newPostText,
+    likeAmount: 0,
+  }
+
+  state.profilePage.posts.push(newPost)
+  state.profilePage.newPostText = ''
+  rerender(state)
+}
+
+export const updateNewPostText = (newText) => {
+  state.profilePage.newPostText = newText
+  rerender(state)
 }
 
 export default state
