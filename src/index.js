@@ -6,14 +6,10 @@ import App from './App'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
-let rerender = (state) => {
+function rerender(state) {
   root.render(
     <React.StrictMode>
-      <App
-        appState={store.getState()}
-        addPost={store.addPost.bind(store)}
-        updateNewPostText={store.updateNewPostText.bind(store)}
-      />
+      <App appState={store.getState()} dispatch={store.dispatch.bind(store)} />
     </React.StrictMode>
   )
 }
