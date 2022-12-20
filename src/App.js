@@ -27,10 +27,7 @@ function App(props) {
                 />
               }
             />
-            <Route
-              path="dialogs/*"
-              element={<Dialogs state={props.appState.dialogPage} />}
-            />
+            <Route path="dialogs/*" element={<Dialogs store={props.store} />} />
             <Route path="music" element={<Music />} />
             <Route path="news" element={<News />} />
             <Route path="admin" element={<Admin />} />
