@@ -5,10 +5,10 @@ import './App.css'
 import Header from './components/Header/Header'
 import Profile from './components/Profile/Profile'
 import NavBar from './components/NavBar/NavBar'
-import Dialogs from './components/Dialogs/Dialogs'
 import Admin from './components/Admin/Admin'
 import Music from './components/Music/Music'
 import News from './components/News/News'
+import DialogsContainer from './components/Dialogs/DialogsContainer'
 
 function App(props) {
   return (
@@ -18,20 +18,10 @@ function App(props) {
         <NavBar />
         <div className="app-wrapper-content">
           <Routes>
-            <Route
-              path="/"
-              element={
-                <Profile
-                  profilePage={props.state.profilePage}
-                  dispatch={props.dispatch}
-                />
-              }
-            />
+            <Route path="/" element={<Profile store={props.store} />} />
             <Route
               path="dialogs/*"
-              element={
-                <Dialogs state={props.state} dispatch={props.dispatch} />
-              }
+              element={<DialogsContainer store={props.store} />}
             />
             <Route path="music" element={<Music />} />
             <Route path="news" element={<News />} />
