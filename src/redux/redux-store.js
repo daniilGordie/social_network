@@ -5,11 +5,13 @@ import { combineReducers } from '@reduxjs/toolkit'
 import profileReducer from './ProfileReducer'
 import dialogReducer from './DialogReducer'
 import sidebarReducer from './sidebarReducer'
+import usersPageReducer from './usersPageReducer'
 
 let reducers = combineReducers({
   profilePage: profileReducer,
   dialogPage: dialogReducer,
-  sidabar: sidebarReducer,
+  sidebar: sidebarReducer,
+  usersPage: usersPageReducer,
 })
 
 const store = configureStore(
