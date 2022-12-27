@@ -1,7 +1,7 @@
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
-let initialState = {
+const initialState = {
   dialogData: [
     { id: 1, name: 'Dimych' },
     { id: 2, name: 'Dimasic' },
@@ -16,15 +16,21 @@ let initialState = {
 }
 
 export const dialogReducer = (state = initialState, action) => {
+  const dialogState = {
+    ...state,
+    messagesData: [...state.messagesData],
+  }
+  // dialogState.messagesData = [...state.messagesData]
+
   switch (action.type) {
     case UPDATE_NEW_MESSAGE_BODY:
-      state.newMessageBody = action.body
-      return state
+      dialogState.newMessageBody = action.body
+      return dialogState
     case SEND_MESSAGE:
-      let body = state.newMessageBody
-      state.newMessageBody = ''
-      state.messagesData.push({ id: 6, message: body })
-      return state
+      let body = dialogState.newMessageBody
+      dialogState.newMessageBody = ''
+      dialogState.messagesData.push({ id: 6, message: body })
+      return dialogState
     default:
       return state
   }
@@ -43,3 +49,24 @@ export const updateNewMessageBodyCreator = (text) => {
 }
 
 export default dialogReducer
+
+// TODO: Refactor reducers by createReducers
+
+// const todosReducer = createReducer([], (builder) => {
+//   builder
+//     .addCase('ADD_TODO', (state, action) => {
+//       // "мутируем" массив, вызывая push()
+//       state.push(action.payload);
+//     })
+//     .addCase('TOGGLE_TODO', (state, action) => {
+//       const todo = state[action.payload.index];
+//       // "мутируем" объект, перезаписывая его поле `completed`
+//       todo.completed = !todo.completed;
+//     })
+//     .addCase('REMOVE_TODO', (state, action) => {
+//       // мы по-прежнему можем использовать иммутабельную логику обновления состояния
+//       return state.filter(
+//         (todo, i) => i !== action.payload.index
+//       );
+//     });
+// });

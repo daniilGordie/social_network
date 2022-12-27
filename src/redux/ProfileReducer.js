@@ -1,7 +1,8 @@
+// import { createReducer } from '@reduxjs/toolkit'
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
-let initialState = {
+const initialState = {
   posts: [
     { id: 1, message: 'Hi, how are you?', likeAmount: 4 },
     { id: 2, message: "It's my first post", likeAmount: 1 },
@@ -13,19 +14,24 @@ let initialState = {
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_POST:
+    case ADD_POST: {
       let newPost = {
         id: 5,
         message: state.newPostText,
         likeAmount: 0,
       }
+      let profileState = { ...state }
 
-      state.posts.push(newPost)
-      state.newPostText = ''
-      return state
-    case UPDATE_NEW_POST_TEXT:
-      state.newPostText = action.newText
-      return state
+      profileState.posts = [...state.posts]
+      profileState.posts.push(newPost)
+      profileState.newPostText = ''
+      return profileState
+    }
+    case UPDATE_NEW_POST_TEXT: {
+      let profileState = { ...state }
+      profileState.newPostText = action.newText
+      return profileState
+    }
     default:
       return state
   }
@@ -44,3 +50,5 @@ export const updateNewPostTextActionCreator = (text) => {
 }
 
 export default profileReducer
+
+// TODO: Refactor reducers by createReducers
