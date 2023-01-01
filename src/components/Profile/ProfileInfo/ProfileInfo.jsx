@@ -1,7 +1,12 @@
 import React from 'react'
+import Preloader from '../../common/Preloader/Preloader'
 import s from './ProfileInfo.module.css'
 
-function ProfileInfo() {
+function ProfileInfo(props) {
+  if (!props.profile) {
+    return <Preloader />
+  }
+
   return (
     <div>
       <img
@@ -9,7 +14,10 @@ function ProfileInfo() {
         alt="banner"
         className={s.banner}
       />
-      <div className={s.description_block}>ava + descr</div>
+      <div className={s.description_block}>
+        <img src="props.profile.photos.large" alt="" />
+        ava + descr
+      </div>
     </div>
   )
 }
