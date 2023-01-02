@@ -19,12 +19,13 @@ function App(props) {
         <NavBar />
         <div className="app-wrapper-content">
           <Routes>
-            <Route path="profile" element={<ProfileContainer />} />
+            <Route path="profile/:id" element={<ProfileContainer />} />
             <Route path="dialogs/*" element={<DialogsContainer />} />
             <Route path="music" element={<Music />} />
             <Route path="users" element={<UsersPageContainer />} />
             <Route path="news" element={<News />} />
             <Route path="admin" element={<Admin />} />
+            <Route path="*" element={<ProfileContainer />} />
           </Routes>
         </div>
       </div>

@@ -4,6 +4,7 @@ const SET_USERS = 'SET-USERS'
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET-TOTAL-USERS-COUNT'
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS-FOLLOWING-PROGRESS'
 
 let initialState = {
   usersList: [],
@@ -11,6 +12,7 @@ let initialState = {
   totalUsersCount: 0,
   currentPage: 1,
   isFetching: false,
+  followingInProgress: [],
 }
 
 const usersPageReducer = (state = initialState, action) => {
@@ -55,6 +57,13 @@ const usersPageReducer = (state = initialState, action) => {
       return {
         ...state,
         usersList: { ...state, isFetching: action.isFetching },
+      }
+    case TOGGLE_IS_FOLLOWING_PROGRESS:
+      return {
+        ...state,
+        followingInProgress: action.isFetching
+          ? [...state.followingInProgress, action.userID]
+          : [...state.followingInProgress.filter((id) => id !== action.userID)],
       }
     default:
       return state
@@ -102,38 +111,12 @@ export const toggleIsFetching = (isFetching) => {
   }
 }
 
-export default usersPageReducer
+export const toggleFollowingInProgress = (isFetching, userID) => {
+  return {
+    type: TOGGLE_IS_FOLLOWING_PROGRESS,
+    isFetching,
+    userID,
+  }
+}
 
-// <---- USERS DATA EXAMPLE ----->
-// {
-//   id: 1,
-//   photoUrl: '',
-//   followed: true,
-//   fullName: 'Dmitry',
-//   status: 'I am a boss',
-//   location: { city: 'Odessa', country: 'Ukraine' },
-// },
-// {
-//   id: 2,
-//   photoUrl: '',
-//   followed: true,
-//   fullName: 'Valera',
-//   status: 'I am a boss',
-//   location: { city: 'Lviv', country: 'Ukraine' },
-// },
-// {
-//   id: 3,
-//   photoUrl: '',
-//   followed: false,
-//   fullName: 'Jora',
-//   status: 'I am a boss',
-//   location: { city: 'Kharkiv', country: 'Ukraine' },
-// },
-// {
-//   id: 4,
-//   photoUrl: '',
-//   followed: true,
-//   fullName: 'Olexandr',
-//   status: 'I am a boss',
-//   location: { city: 'Donetsk', country: 'Ukraine' },
-// },
+export default usersPageReducer
