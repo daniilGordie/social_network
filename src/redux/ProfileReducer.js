@@ -11,7 +11,7 @@ const initialState = {
     { id: 4, message: 'Would you want to learn react?', likeAmount: 5 },
   ],
   newPostText: 'vasya is writing',
-  profile: null,
+  profile: 223,
 }
 
 const profileReducer = (state = initialState, action) => {

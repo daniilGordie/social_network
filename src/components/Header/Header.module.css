@@ -5,8 +5,8 @@
 
   display: grid;
 
-  grid-template-areas: 'i g';
-  grid-template-columns: 1fr 10fr;
+  grid-template-areas: 'i g l';
+  grid-template-columns: 1fr 9fr 1fr;
 }
 
 header img {
@@ -18,4 +18,13 @@ header img {
 
 h2 {
   grid-area: g;
+}
+
+.loginBlock {
+  grid-area: l;
+  margin-top: 30px;
+}
+
+.loginBlock a {
+  color: white;
 }

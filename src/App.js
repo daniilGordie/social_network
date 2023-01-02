@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
 
-import Header from './components/Header/Header'
+import HeaderContainer from './components/Header/HeaderContainer'
 import NavBar from './components/NavBar/NavBar'
 import UsersPageContainer from './components/UsersPage/UsersPageContainer'
 import Admin from './components/Admin/Admin'
@@ -15,11 +15,11 @@ function App(props) {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
-        <Header />
+        <HeaderContainer />
         <NavBar />
         <div className="app-wrapper-content">
           <Routes>
-            <Route path="/" element={<ProfileContainer />} />
+            <Route path="profile" element={<ProfileContainer />} />
             <Route path="dialogs/*" element={<DialogsContainer />} />
             <Route path="music" element={<Music />} />
             <Route path="users" element={<UsersPageContainer />} />
