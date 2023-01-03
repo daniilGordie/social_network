@@ -15,9 +15,9 @@ function ProfileInfo(props) {
         className={s.banner}
       />
       <div className={s.description_block}>
-        <img src="props.profile.photos.large" alt="" />
-        ava + descr
+        {/* <img src={props.profile.photos.small} alt="user avatar" /> */}
       </div>
+      <div>{props.profile.fullName}</div>
     </div>
   )
 }

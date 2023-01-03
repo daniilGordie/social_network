@@ -4,7 +4,6 @@ import s from './UsersPage.module.css'
 import axios from 'axios'
 
 const Users = (props) => {
-  console.log(props)
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 
   let pages = []
@@ -18,7 +17,7 @@ const Users = (props) => {
           return (
             <span
               key={id}
-              className={props.currentPage === p && s.selectedPage}
+              className={props.currentPage === p ? s.selectedPage : ''}
               onClick={(e) => {
                 props.onPageChanged(p)
               }}
@@ -43,16 +42,12 @@ const Users = (props) => {
                   onClick={() => {
                     props.toggleFollowingInProgress(true, u.id)
                     axios
-                      .delete(
-                        `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,
-                        {},
-                        {
-                          withCredentials: true,
-                          headers: {
-                            'API-KEY': 'de9c11c8-ecb8-44ea-8900-dfe5c41b722e',
-                          },
-                        }
-                      )
+                      .delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                        withCredentials: true,
+                        headers: {
+                          'API-KEY': 'de9c11c8-ecb8-44ea-8900-dfe5c41b722e',
+                        },
+                      })
                       .then((response) => {
                         if (response.data.resultCode === 0) {
                           props.unfollow(u.id)
