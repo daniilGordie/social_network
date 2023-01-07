@@ -1,7 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, applyMiddleware } from '@reduxjs/toolkit'
 import { combineReducers } from '@reduxjs/toolkit'
-// import { composeWithDevTools } from '@reduxjs/toolkit/dist/devtoolsExtension'
-// import thunk from 'redux-thunk'
+import thunkMiddleware from 'redux-thunk'
 import profileReducer from './ProfileReducer'
 import dialogReducer from './DialogReducer'
 import sidebarReducer from './sidebarReducer'
@@ -19,8 +18,8 @@ let reducers = combineReducers({
 const store = configureStore(
   {
     reducer: reducers,
-  }
-  // composeWithDevTools(applyMiddleware(thunk))
+  },
+  applyMiddleware(thunkMiddleware)
 )
 
 export default store

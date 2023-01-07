@@ -18,4 +18,21 @@ export const usersAPI = {
     )
     return response.data
   },
+  follow(id) {
+    return instanse.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`)
+  },
+  unfollow(id) {
+    return instanse.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`)
+  },
+  getProfile(id) {
+    return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`)
+  },
+}
+
+export const authAPI = {
+  me() {
+    return instanse.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
+      withCredentials: true,
+    })
+  },
 }
