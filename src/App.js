@@ -8,6 +8,7 @@ import UsersPageContainer from './components/UsersPage/UsersPageContainer'
 import Admin from './components/Admin/Admin'
 import Music from './components/Music/Music'
 import News from './components/News/News'
+import LoginPage from './components/Login/Login'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import ProfileContainer from './components/Profile/ProfileContainer'
 
@@ -24,6 +25,7 @@ function App(props) {
             <Route path="music" element={<Music />} />
             <Route path="users" element={<UsersPageContainer />} />
             <Route path="news" element={<News />} />
+            <Route path="login" element={<LoginPage />} />
             <Route path="admin" element={<Admin />} />
             <Route path="*" element={<ProfileContainer />} />
           </Routes>

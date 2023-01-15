@@ -5,7 +5,12 @@ import ProfileInfo from './ProfileInfo/ProfileInfo'
 function Profile(props) {
   return (
     <div>
-      <ProfileInfo {...props} profile={props.profile} />
+      <ProfileInfo
+        {...props}
+        profile={props.profile}
+        status={props.status}
+        updateStatus={props.updateStatus}
+      />
       <MyPostsContainer />
     </div>
   )
