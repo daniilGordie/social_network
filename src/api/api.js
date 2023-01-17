@@ -36,6 +36,16 @@ export const authAPI = {
       withCredentials: true,
     })
   },
+  login(email, password, rememberMe = false) {
+    return instanse.post(`https://social-network.samuraijs.com/api/1.0/auth/login`, {
+      email,
+      password,
+      rememberMe,
+    })
+  },
+  logout() {
+    return instanse.delete(`https://social-network.samuraijs.com/api/1.0/auth/login`)
+  },
 }
 
 export const profileAPI = {
