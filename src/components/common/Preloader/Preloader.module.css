@@ -1,0 +1,6 @@
+.load_image {
+  display: flex;
+  font-display: column;
+  justify-content: center;
+  align-items: center;
+}

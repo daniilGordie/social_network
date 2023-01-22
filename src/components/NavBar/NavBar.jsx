@@ -1,10 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
+
 import s from './NavBar.module.css'
 
 //TODO: Add the area "friends" with icons and names as a sidebar
 
-const NavBar = () => {
+const NavBar = (props) => {
+  const checkAuth = !props.isAuth ? '/login' : '/dialogs'
   const isActive = ({ isActive }) => (isActive ? s.active : '')
   return (
     <nav className={s.navigation}>
@@ -14,7 +17,7 @@ const NavBar = () => {
         </NavLink>
       </div>
       <div className={s.item}>
-        <NavLink to={'dialogs'} className={isActive}>
+        <NavLink to={checkAuth} className={isActive}>
           Messages
         </NavLink>
       </div>
@@ -42,4 +45,8 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuth,
+})
+
+export default connect(mapStateToProps, {})(NavBar)

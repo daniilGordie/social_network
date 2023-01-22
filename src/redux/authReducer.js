@@ -8,6 +8,7 @@ const initialState = {
   userID: null,
   email: null,
   isAuth: false,
+  rememberMe: false,
   isSubmitSucces: true,
 }
 
@@ -53,11 +54,12 @@ export const getAuthUserData = () => (dispatch) => {
   })
 }
 
-export const setLogin = (email, password, rememberMe) => (dispatch) => {
+export const setLogin = (email, password, rememberMe, setNav) => (dispatch) => {
   authAPI.login(email, password, rememberMe).then((response) => {
     if (response.data.resultCode === 0) {
       dispatch(getAuthUserData())
       dispatch(setSubmitSucces(true))
+      setNav()
     } else {
       dispatch(setSubmitSucces(false))
     }

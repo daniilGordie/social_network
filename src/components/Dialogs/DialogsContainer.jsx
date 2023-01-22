@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { sendMessage } from '../../redux/DialogReducer'
 import Dialogs from './Dialogs'
-// import { withAuthRedirect } from '../../hoc/withAuthRedirect'
+
+const DialogsContainer = (props) => {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!props.isAuth) {
+      navigate('/login')
+    }
+  }, [props.isAuth, navigate])
+
+  return <Dialogs {...props} />
+}
 
 let mapStateToProps = (state) => {
   return {
@@ -19,7 +31,5 @@ let mapDispathToProps = (dispatch) => {
     },
   }
 }
-//TODO: refactor component for HOC auth
-//  withAuthRedirect
 
-export default compose(connect(mapStateToProps, mapDispathToProps))(Dialogs)
+export default compose(connect(mapStateToProps, mapDispathToProps))(DialogsContainer)

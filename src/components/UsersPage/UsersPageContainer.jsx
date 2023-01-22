@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Users from './Users'
 import {
@@ -7,44 +7,49 @@ import {
   followThunk,
   unfollowThunk,
 } from '../../redux/usersPageReducer'
+import {
+  getUsersList,
+  getPageSize,
+  getTotalUsersCount,
+  getCurrentPage,
+  getIsFetching,
+  getFollowingInProgress,
+} from '../../redux/users-selector'
 import Preloader from '../common/Preloader/Preloader'
 
-class UsersContainer extends React.Component {
-  componentDidMount() {
-    this.props.getUsers(this.props.currentPage, this.props.pageSize)
-  }
+const UsersContainer = (props) => {
+  useEffect(() => {
+    props.getUsers(props.currentPage, props.pageSize)
+  }, [props.currentPage, props.pageSize])
 
-  onPageChanged = (pageNumber) => {
-    this.props.getUsers(pageNumber, this.props.pageSize)
+  const onPageChanged = (pageNumber) => {
+    props.getUsers(pageNumber, props.pageSize)
   }
-
-  render() {
-    return (
-      <>
-        {this.props.isFetching ? <Preloader /> : null}
-        <Users
-          totalUsersCount={this.props.totalUsersCount}
-          pageSize={this.props.pageSize}
-          currentPage={this.props.currentPage}
-          onPageChanged={this.onPageChanged}
-          usersList={this.props.usersList}
-          unfollowThunk={this.props.unfollowThunk}
-          followThunk={this.props.followThunk}
-          followingInProgress={this.props.followingInProgress}
-        />
-      </>
-    )
-  }
+  return (
+    <>
+      {props.isFetching ? <Preloader /> : null}
+      <Users
+        totalUsersCount={props.totalUsersCount}
+        pageSize={props.pageSize}
+        currentPage={props.currentPage}
+        onPageChanged={onPageChanged}
+        usersList={props.usersList}
+        unfollowThunk={props.unfollowThunk}
+        followThunk={props.followThunk}
+        followingInProgress={props.followingInProgress}
+      />
+    </>
+  )
 }
 
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
-    usersList: state.usersPage.usersList,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress,
+    usersList: getUsersList(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    followingInProgress: getFollowingInProgress(state),
   }
 }
 

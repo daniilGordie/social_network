@@ -3,7 +3,6 @@ import Profile from './Profile'
 import { connect } from 'react-redux'
 import { getUserProfile, getStatus, updateStatus } from '../../redux/ProfileReducer'
 import { useParams } from 'react-router-dom'
-// import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 
 const ProfileContainer = (props) => {
   const { id } = useParams()
@@ -16,8 +15,6 @@ const ProfileContainer = (props) => {
     <Profile {...props} profile={props.profile} status={props.status} updateStatus={updateStatus} />
   )
 }
-
-// const AuthRedirectComponent = withAuthRedirect(ProfileContainer)
 
 const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,

@@ -2,8 +2,10 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { connect } from 'react-redux'
 import { setLogin } from '../../redux/authReducer'
+import { useNavigate } from 'react-router-dom'
 
 const Login = (props) => {
+  const set = useNavigate()
   const {
     register,
     reset,
@@ -11,7 +13,7 @@ const Login = (props) => {
     formState: { errors },
   } = useForm()
   const onSubmit = (data) => {
-    props.setLogin(data.email, data.password)
+    props.setLogin(data.email, data.password, true, () => set('/profile'))
     reset()
   }
 

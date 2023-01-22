@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { connect } from 'react-redux'
 import './App.css'
 
 import HeaderContainer from './components/Header/HeaderContainer'
@@ -11,8 +12,13 @@ import News from './components/News/News'
 import LoginPage from './components/Login/Login'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import ProfileContainer from './components/Profile/ProfileContainer'
+import { initializeApp } from './redux/appReducer'
 
 function App(props) {
+  useEffect(() => {
+    initializeApp()
+  })
+
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -21,7 +27,7 @@ function App(props) {
         <div className="app-wrapper-content">
           <Routes>
             <Route path="profile/:id" element={<ProfileContainer />} />
-            <Route path="dialogs/*" element={<DialogsContainer />} />
+            <Route path={'/dialogs/*'} element={<DialogsContainer />} />
             <Route path="music" element={<Music />} />
             <Route path="users" element={<UsersPageContainer />} />
             <Route path="news" element={<News />} />
@@ -35,4 +41,8 @@ function App(props) {
   )
 }
 
-export default App
+const mapStateToProps = (state) => ({
+  initialized: state.app.initialized,
+})
+
+export default connect(mapStateToProps, { initializeApp })(App)
