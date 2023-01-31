@@ -9,7 +9,7 @@ function Profile(props) {
         {...props}
         profile={props.profile}
         status={props.status}
-        updateStatus={props.updateStatus}
+        updateCurrentStatus={props.updateCurrentStatus}
       />
       <MyPostsContainer />
     </div>

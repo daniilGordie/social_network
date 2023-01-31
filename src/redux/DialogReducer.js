@@ -38,24 +38,3 @@ export const sendMessage = (text) => {
 }
 
 export default dialogReducer
-
-// TODO: Refactor reducers by createReducers
-
-// const todosReducer = createReducer([], (builder) => {
-//   builder
-//     .addCase('ADD_TODO', (state, action) => {
-//       // "мутируем" массив, вызывая push()
-//       state.push(action.payload);
-//     })
-//     .addCase('TOGGLE_TODO', (state, action) => {
-//       const todo = state[action.payload.index];
-//       // "мутируем" объект, перезаписывая его поле `completed`
-//       todo.completed = !todo.completed;
-//     })
-//     .addCase('REMOVE_TODO', (state, action) => {
-//       // мы по-прежнему можем использовать иммутабельную логику обновления состояния
-//       return state.filter(
-//         (todo, i) => i !== action.payload.index
-//       );
-//     });
-// });

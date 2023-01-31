@@ -14,7 +14,7 @@ const initialState = {
   ],
   newPostText: 'vasya is writing',
   profile: null,
-  status: 'Hello World',
+  status: '',
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -65,29 +65,27 @@ const setUserProfile = (profile) => {
     type: SET_USER_PROFILE,
   }
 }
-const setStatus = (status) => {
+const setCurrentStatus = (status) => {
   return {
     status,
     type: SET_STATUS,
   }
 }
 
-export const getUserProfile = (id) => (dispatch) => {
-  usersAPI.getProfile(id).then((response) => {
-    dispatch(setUserProfile(response.data))
-  })
+export const getUserProfile = (id) => async (dispatch) => {
+  const response = await usersAPI.getProfile(id)
+  dispatch(setUserProfile(response.data))
 }
-export const getStatus = (id) => (dispatch) => {
-  profileAPI.getStatus(id).then((response) => {
-    dispatch(setStatus(response.data))
-  })
+export const getStatus = (id) => async (dispatch) => {
+  const response = await profileAPI.getStatus(id)
+  dispatch(setCurrentStatus(response.data))
 }
-export const updateStatus = (status) => (dispatch) => {
-  profileAPI.updateStatus(status).then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(setStatus(status))
-    }
-  })
+export const updateCurrentStatus = (status) => async (dispatch) => {
+  const response = await profileAPI.updateStatus(status)
+  if (response.data.resultCode === 0) {
+    debugger
+    dispatch(setCurrentStatus(status))
+  }
 }
 
 export default profileReducer

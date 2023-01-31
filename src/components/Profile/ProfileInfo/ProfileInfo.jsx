@@ -3,15 +3,15 @@ import Preloader from '../../common/Preloader/Preloader'
 import s from './ProfileInfo.module.css'
 import ProfileStatus from './ProfileStatus'
 
-function ProfileInfo(props) {
-  if (!props.profile) {
+function ProfileInfo({ status, updateCurrentStatus, profile }) {
+  if (!profile) {
     return <Preloader />
   }
   return (
     <div>
       <div className={s.description_block}>
         {/* <img src={props.profile.photos.small} alt="user avatar" /> */}
-        <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+        <ProfileStatus status={status} updateCurrentStatus={updateCurrentStatus} />
       </div>
     </div>
   )

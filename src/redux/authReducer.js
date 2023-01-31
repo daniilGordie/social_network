@@ -45,33 +45,30 @@ const setSubmitSucces = (isSubmit) => {
   }
 }
 
-export const getAuthUserData = () => (dispatch) => {
-  authAPI.me().then((response) => {
-    if (response.data.resultCode === 0) {
-      const { id, login, email } = response.data.data
-      dispatch(setAuthUserData({ userID: id, login, email }, true))
-    }
-  })
+export const getAuthUserData = () => async (dispatch) => {
+  const response = await authAPI.me()
+  if (response.data.resultCode === 0) {
+    const { id, login, email } = response.data.data
+    dispatch(setAuthUserData({ userID: id, login, email }, true))
+  }
 }
 
-export const setLogin = (email, password, rememberMe, setNav) => (dispatch) => {
-  authAPI.login(email, password, rememberMe).then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(getAuthUserData())
-      dispatch(setSubmitSucces(true))
-      setNav()
-    } else {
-      dispatch(setSubmitSucces(false))
-    }
-  })
+export const setLogin = (email, password, rememberMe, setNav) => async (dispatch) => {
+  const response = await authAPI.login(email, password, rememberMe)
+  if (response.data.resultCode === 0) {
+    dispatch(getAuthUserData())
+    dispatch(setSubmitSucces(true))
+    setNav()
+  } else {
+    dispatch(setSubmitSucces(false))
+  }
 }
 
-export const setLogout = () => (dispatch) => {
-  authAPI.logout().then((response) => {
-    if (response.data.resultCode === 0) {
-      dispatch(setAuthUserData({ userID: null, login: null, email: null, isAuth: false }))
-    }
-  })
+export const setLogout = () => async (dispatch) => {
+  const response = await authAPI.logout()
+  if (response.data.resultCode === 0) {
+    dispatch(setAuthUserData({ userID: null, login: null, email: null, isAuth: false }))
+  }
 }
 
 export default authReducer

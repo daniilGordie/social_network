@@ -29,7 +29,7 @@ const UsersContainer = (props) => {
     <>
       {props.isFetching ? <Preloader /> : null}
       <Users
-        totalUsersCount={props.totalUsersCount}
+        totalItemsCount={props.totalUsersCount}
         pageSize={props.pageSize}
         currentPage={props.currentPage}
         onPageChanged={onPageChanged}

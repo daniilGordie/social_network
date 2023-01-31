@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from 'react'
-// import s from './ProfileInfo.module.css'
+import React, { useState } from 'react'
 
 function ProfileStatus(props) {
   const [editMode, setEditMode] = useState(false)
+  const [status, setStatus] = useState('Write something about your status')
 
   const activateEditMode = () => {
     setEditMode(true)
   }
 
-  const deactivateEditMode = () => {
+  const deactivateEditMode = (status) => {
     setEditMode(false)
+    props.updateCurrentStatus(status)
   }
-
-  const [status, setStatus] = useState('Say somethimg about yourself')
-
-  // useEffect(
-
-  // )
 
   const onStatusChange = (e) => {
     setStatus(e.currentTarget.value)
@@ -24,17 +19,15 @@ function ProfileStatus(props) {
 
   return (
     <div>
-      {!editMode && (
-        <div>
-          <span onClick={activateEditMode}>{status}</span>
-        </div>
-      )}
+      {!editMode && <span onClick={activateEditMode}>{status}</span>}
       {editMode && (
         <div>
           <input
             onChange={onStatusChange}
             autoFocus={true}
-            onBlur={deactivateEditMode}
+            onBlur={() => {
+              deactivateEditMode(status)
+            }}
             type="text"
             value={status}
           />

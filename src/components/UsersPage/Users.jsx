@@ -1,72 +1,19 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import s from './UsersPage.module.css'
+import Paginator from '../Paginator/Paginator'
+import User from './User/User'
 
-const Users = (props) => {
-  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-
-  let pages = []
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i)
-  }
+const Users = ({ usersList, ...props }) => {
   return (
     <>
-      <div>
-        {pages.map((p, id) => {
-          return (
-            <span
-              key={id}
-              className={props.currentPage === p ? s.selectedPage : ''}
-              onClick={(e) => {
-                props.onPageChanged(p)
-              }}
-            >
-              {p}
-            </span>
-          )
-        })}
-      </div>
-      {Array.from(props.usersList).map((u) => (
-        <div key={u.id}>
-          <span>
-            <div>
-              <NavLink to={'/profile/' + u.id}>
-                <img src={u.photos} alt="u-avatar" className={s.userPhoto} />
-              </NavLink>
-            </div>
-            <div>
-              {u.followed ? (
-                <button
-                  disabled={props.followingInProgress.some((id) => id === u.id)}
-                  onClick={() => {
-                    props.unfollowThunk(u.id)
-                  }}
-                >
-                  UnFollow
-                </button>
-              ) : (
-                <button
-                  disabled={props.followingInProgress.some((id) => id === u.id)}
-                  onClick={() => {
-                    props.followThunk(u.id)
-                  }}
-                >
-                  Follow
-                </button>
-              )}
-            </div>
-          </span>
-          <span>
-            <span>
-              <div>{u.name}</div>
-              <div>{u.status}</div>
-            </span>
-            <span>
-              <div>"u.location.city"</div>
-              <div>"u.location.country"</div>
-            </span>
-          </span>
-        </div>
+      <Paginator {...props} />
+      {Array.from(usersList).map((u) => (
+        <User
+          key={u.id}
+          user={u}
+          followingInProgress={props.followingInProgress}
+          unfollowThunk={props.unfollowThunk}
+          followThunk={props.followThunk}
+        />
       ))}
     </>
   )

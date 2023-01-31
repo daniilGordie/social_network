@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { setLogin } from '../../redux/authReducer'
 import { useNavigate } from 'react-router-dom'
 
-const Login = (props) => {
-  const set = useNavigate()
+const Login = ({ setLogin, isSubmitSucces }) => {
+  const navigate = useNavigate()
   const {
     register,
     reset,
@@ -13,7 +13,7 @@ const Login = (props) => {
     formState: { errors },
   } = useForm()
   const onSubmit = (data) => {
-    props.setLogin(data.email, data.password, true, () => set('/profile'))
+    setLogin(data.email, data.password, true, () => navigate('/profile'))
     reset()
   }
 
@@ -39,7 +39,7 @@ const Login = (props) => {
           <input placeholder="password" {...register('password')} />
           <div>{errors.password && <span>This field is required</span>}</div>
         </div>
-        {props.isSubmitSucces || (
+        {isSubmitSucces || (
           <div>
             <span>Login or password is incorrect</span>
           </div>

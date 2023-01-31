@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Profile from './Profile'
 import { connect } from 'react-redux'
-import { getUserProfile, getStatus, updateStatus } from '../../redux/ProfileReducer'
+import { getUserProfile, getStatus, updateCurrentStatus } from '../../redux/ProfileReducer'
 import { useParams } from 'react-router-dom'
 
 const ProfileContainer = (props) => {
@@ -12,7 +12,12 @@ const ProfileContainer = (props) => {
     props.getStatus(id || 27328)
   }, [id])
   return (
-    <Profile {...props} profile={props.profile} status={props.status} updateStatus={updateStatus} />
+    <Profile
+      {...props}
+      profile={props.profile}
+      status={props.status}
+      updateCurrentStatus={updateCurrentStatus}
+    />
   )
 }
 
@@ -22,6 +27,6 @@ const mapStateToProps = (state) => ({
   status: state.profilePage.status,
 })
 
-export default connect(mapStateToProps, { getUserProfile, getStatus, updateStatus })(
+export default connect(mapStateToProps, { getUserProfile, getStatus, updateCurrentStatus })(
   ProfileContainer
 )
