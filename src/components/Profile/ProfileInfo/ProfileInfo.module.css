@@ -8,3 +8,8 @@
 .description_block {
   padding: 10px;
 }
+
+.avatar_photo {
+  max-width: 70px;
+  min-height: 70px;
+}

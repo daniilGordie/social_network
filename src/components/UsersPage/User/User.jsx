@@ -1,6 +1,7 @@
 import React from 'react'
 import s from './User.module.css'
 import { NavLink } from 'react-router-dom'
+import terminator from './../../../assets/4837857.png'
 
 const User = ({ followingInProgress, unfollowThunk, followThunk, user }) => {
   return (
@@ -8,7 +9,7 @@ const User = ({ followingInProgress, unfollowThunk, followThunk, user }) => {
       <span>
         <div>
           <NavLink to={'/profile/' + user.id}>
-            <img src={user.photos} alt="u-avatar" className={s.userPhoto} />
+            <img src={user.photos.small || terminator} alt="u-avatar" className={s.userPhoto} />
           </NavLink>
         </div>
         <div>

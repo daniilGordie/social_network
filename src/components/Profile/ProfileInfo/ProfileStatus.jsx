@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 function ProfileStatus(props) {
   const [editMode, setEditMode] = useState(false)
-  const [status, setStatus] = useState('Write something about your status')
+  const [status, setStatus] = useState(props.status)
 
   const activateEditMode = () => {
     setEditMode(true)
@@ -10,7 +10,7 @@ function ProfileStatus(props) {
 
   const deactivateEditMode = (status) => {
     setEditMode(false)
-    props.updateCurrentStatus(status)
+    props.updateCurrentStatus(status)()
   }
 
   const onStatusChange = (e) => {
@@ -19,7 +19,12 @@ function ProfileStatus(props) {
 
   return (
     <div>
-      {!editMode && <span onClick={activateEditMode}>{status}</span>}
+      {!editMode && (
+        <span onClick={activateEditMode}>
+          <b>Status: </b>
+          {status}
+        </span>
+      )}
       {editMode && (
         <div>
           <input

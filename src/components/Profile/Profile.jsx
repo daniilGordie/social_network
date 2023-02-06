@@ -7,9 +7,11 @@ function Profile(props) {
     <div>
       <ProfileInfo
         {...props}
+        isOwner={props.isOwner}
         profile={props.profile}
         status={props.status}
         updateCurrentStatus={props.updateCurrentStatus}
+        savePhoto={props.savePhoto}
       />
       <MyPostsContainer />
     </div>

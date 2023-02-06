@@ -25,7 +25,7 @@ export const usersAPI = {
     return instanse.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`)
   },
   getProfile(id) {
-    console.warn('obsolete method, please profileAPI object.')
+    // Redirect on correct method
     return profileAPI.getProfile(id)
   },
 }
@@ -58,6 +58,15 @@ export const profileAPI = {
   updateStatus(status) {
     return instanse.put(`https://social-network.samuraijs.com/api/1.0/profile/status`, {
       status: status,
+    })
+  },
+  updatePhoto(photoFile) {
+    const formData = new FormData()
+    formData.append('image', photoFile)
+    return instanse.put(`https://social-network.samuraijs.com/api/1.0/profile/photo`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     })
   },
 }
