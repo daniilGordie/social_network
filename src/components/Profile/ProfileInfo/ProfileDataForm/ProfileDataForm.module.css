@@ -1,0 +1,39 @@
+.profile_form {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.profile_form_input[type='text'] {
+  width: 300px;
+  height: 20px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.profile_form_contact_input[type='text'] {
+  width: 200px;
+  height: 17px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.profile_form_button[type='submit'] {
+  width: 100px;
+  height: 30px;
+  margin-top: 20px;
+  background-color: lightblue;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form_text {
+  color: red;
+}

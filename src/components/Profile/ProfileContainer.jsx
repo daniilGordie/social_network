@@ -6,6 +6,7 @@ import {
   getStatus,
   updateCurrentStatus,
   savePhoto,
+  saveProfileData,
 } from '../../redux/ProfileReducer'
 import { useParams } from 'react-router-dom'
 
@@ -24,6 +25,7 @@ const ProfileContainer = (props) => {
       status={props.status}
       updateCurrentStatus={updateCurrentStatus}
       savePhoto={props.savePhoto}
+      saveProfileData={props.saveProfileData}
     />
   )
 }
@@ -39,4 +41,5 @@ export default connect(mapStateToProps, {
   getStatus,
   updateCurrentStatus,
   savePhoto,
+  saveProfileData,
 })(ProfileContainer)

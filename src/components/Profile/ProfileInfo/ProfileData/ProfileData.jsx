@@ -1,9 +1,10 @@
 import React from 'react'
 import Contact from './../Contacts/Contact'
 
-const ProfileData = ({ profile }) => {
+const ProfileData = ({ profile, isOwner, goToEditMode }) => {
   return (
     <div>
+      <div>{isOwner && <button onClick={goToEditMode}>Edit Profile</button>}</div>
       <div>
         <b>Full Name:</b> {profile.fullName}
       </div>

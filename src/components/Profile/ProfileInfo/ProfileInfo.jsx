@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Preloader from '../../common/Preloader/Preloader'
 import s from './ProfileInfo.module.css'
 import ProfileStatus from './ProfileStatus'
 import ProfileData from './ProfileData/ProfileData'
 import terminator from './../../../assets/4837857.png'
+import ProfileDataForm from './ProfileDataForm/ProfileDataForm'
 
-function ProfileInfo({ status, updateCurrentStatus, profile, isOwner, savePhoto }) {
+function ProfileInfo({
+  status,
+  updateCurrentStatus,
+  profile,
+  isOwner,
+  savePhoto,
+  saveProfileData,
+}) {
+  const [editMode, setEditMode] = useState(false)
+
   if (!profile) {
     return <Preloader />
   }
@@ -15,6 +25,15 @@ function ProfileInfo({ status, updateCurrentStatus, profile, isOwner, savePhoto 
       savePhoto(e.target.files[0])
     }
   }
+
+  const goToEditMode = () => {
+    setEditMode(true)
+  }
+
+  const goOutFromEditMode = () => {
+    setEditMode(false)
+  }
+
   return (
     <div>
       <div className={s.description_block}>
@@ -24,7 +43,16 @@ function ProfileInfo({ status, updateCurrentStatus, profile, isOwner, savePhoto 
           className={s.avatar_photo}
         />
         {!isOwner || <input type={'file'} onChange={onMainPhotoSelected} />}
-        <ProfileData profile={profile} />
+        {editMode ? (
+          <ProfileDataForm
+            profile={profile}
+            saveProfileData={saveProfileData}
+            goOutFromEditMode={goOutFromEditMode}
+          />
+        ) : (
+          <ProfileData profile={profile} isOwner={isOwner} goToEditMode={goToEditMode} />
+        )}
+
         <ProfileStatus status={status} updateCurrentStatus={updateCurrentStatus} />
       </div>
     </div>

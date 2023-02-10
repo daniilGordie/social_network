@@ -36,15 +36,24 @@ export const authAPI = {
       withCredentials: true,
     })
   },
-  login(email, password, rememberMe = false) {
+  login(email, password, rememberMe = false, captcha = null) {
     return instanse.post(`https://social-network.samuraijs.com/api/1.0/auth/login`, {
       email,
       password,
       rememberMe,
+      captcha,
     })
   },
   logout() {
     return instanse.delete(`https://social-network.samuraijs.com/api/1.0/auth/login`)
+  },
+}
+
+export const securityAPI = {
+  getCaptcha() {
+    return instanse.get(`https://social-network.samuraijs.com/api/1.0//security/get-captcha-url`, {
+      withCredentials: true,
+    })
   },
 }
 
@@ -67,6 +76,12 @@ export const profileAPI = {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
+    })
+  },
+  updateProfileData(data) {
+    console.log('yo')
+    return instanse.put(`https://social-network.samuraijs.com/api/1.0/profile`, {
+      data: data,
     })
   },
 }
