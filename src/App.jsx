@@ -12,7 +12,7 @@ import News from './components/News/News'
 import LoginPage from './components/Login/Login'
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import ProfileContainer from './components/Profile/ProfileContainer'
-import { initializeApp } from './redux/appReducer'
+import { initializeApp } from './redux/appReducer.ts'
 
 function App(props) {
   useEffect(() => {

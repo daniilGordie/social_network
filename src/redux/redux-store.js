@@ -8,7 +8,7 @@ import dialogReducer from './DialogReducer'
 import sidebarReducer from './sidebarReducer'
 import usersPageReducer from './usersPageReducer'
 import authReducer from './authReducer'
-import appReducer from './appReducer'
+import appReducer from './appReducer.ts'
 
 let reducers = combineReducers({
   profilePage: profileReducer,
