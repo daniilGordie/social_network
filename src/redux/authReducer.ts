@@ -1,4 +1,4 @@
-import { authAPI, securityAPI } from '../api/api'
+import { authAPI, securityAPI, ResultCodeEnum } from '../api/api.ts'
 
 const SET_USER_DATA = 'SET_USER_DATA'
 const IS_SUBMIT_SUCCES = 'IS_SUBMIT_SUCCES'
@@ -97,7 +97,7 @@ const getCaptchaURLSuccess = (url: string): GetCaptchaURLSuccessActionType => {
 
 export const getAuthUserData = () => async (dispatch: any) => {
   const response = await authAPI.me()
-  if (response.data.resultCode === 0) {
+  if (response.data.resultCode === ResultCodeEnum.Success) {
     const { id, login, email } = response.data.data
     dispatch(setAuthUserData(id, login, email, true))
   }
@@ -111,12 +111,12 @@ export const setLogin =
   (email: string, password: string, rememberMe: boolean, setNav: Function, captcha = null) =>
   async (dispatch: any) => {
     const response = await authAPI.login(email, password, rememberMe, captcha)
-    if (response.data.resultCode === 0) {
+    if (response.data.resultCode === ResultCodeEnum.Success) {
       dispatch(getAuthUserData())
       dispatch(setSubmitSucces(true))
       setNav()
     } else {
-      if (response.data.resultCode === 10) {
+      if (response.data.resultCode === ResultCodeEnum.CaptchaIsRequired) {
         dispatch(getCaptchaURL())
       }
       dispatch(setSubmitSucces(false))
@@ -125,7 +125,7 @@ export const setLogin =
 
 export const setLogout = () => async (dispatch: any) => {
   const response = await authAPI.logout()
-  if (response.data.resultCode === 0) {
+  if (response.data.resultCode === ResultCodeEnum.Success) {
     dispatch(setAuthUserData(null, null, null, false))
   }
 }
