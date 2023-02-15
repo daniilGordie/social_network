@@ -5,7 +5,7 @@ import './App.css'
 
 import HeaderContainer from './components/Header/HeaderContainer'
 import NavBar from './components/NavBar/NavBar'
-import UsersPageContainer from './components/UsersPage/UsersPageContainer'
+import UsersPageContainer from './components/UsersPage/UsersPageContainer.tsx'
 import Admin from './components/Admin/Admin'
 import Music from './components/Music/Music'
 import News from './components/News/News'

@@ -1,11 +1,11 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { connect } from 'react-redux'
-import { setLogin } from '../../redux/authReducer'
+import { setLogin } from '../../redux/authReducer.ts'
 import { useNavigate } from 'react-router-dom'
 
 const Login = ({ setLogin, isSubmitSucces, captchaURL }) => {
-  console.log(captchaURL)
+  // console.log(captchaURL)
   const navigate = useNavigate()
 
   const {

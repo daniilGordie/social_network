@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import {
   addPostActionCreator,
   updateNewPostTextActionCreator,
-} from '../../../redux/ProfileReducer'
+} from '../../../redux/ProfileReducer.ts'
 import MyPosts from './MyPosts'
 
 const mapStateToProps = (state) => {

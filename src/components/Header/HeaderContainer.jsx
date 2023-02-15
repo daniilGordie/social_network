@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import { connect } from 'react-redux'
-import { setLogout } from '../../redux/authReducer'
+import { setLogout } from '../../redux/authReducer.ts'
 
 const HeaderContainer = (props) => {
   return <Header {...props} />

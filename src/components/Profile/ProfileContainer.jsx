@@ -7,7 +7,7 @@ import {
   updateCurrentStatus,
   savePhoto,
   saveProfileData,
-} from '../../redux/ProfileReducer'
+} from '../../redux/ProfileReducer.ts'
 import { useParams } from 'react-router-dom'
 
 const ProfileContainer = (props) => {

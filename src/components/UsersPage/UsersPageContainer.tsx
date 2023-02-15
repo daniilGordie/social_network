@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import Users from './Users'
-import {
-  toggleFollowingInProgress,
-  getUsers,
-  followThunk,
-  unfollowThunk,
-} from '../../redux/usersPageReducer'
+import Users from './Users.tsx'
+import { AppStateType } from './../../redux/redux-store.ts'
+import { getUsers, followThunk, unfollowThunk } from '../../redux/usersPageReducer.ts'
 import {
   getUsersList,
   getPageSize,
@@ -14,10 +10,28 @@ import {
   getCurrentPage,
   getIsFetching,
   getFollowingInProgress,
-} from '../../redux/users-selector'
+} from '../../redux/users-selector.ts'
 import Preloader from '../common/Preloader/Preloader'
+import { UserType } from '../../types/types'
 
-const UsersContainer = (props) => {
+type MapStatePropsType = {
+  currentPage: number
+  pageSize: number
+  isFetching: boolean
+  totalUsersCount: number
+  usersList: Array<UserType>
+  followingInProgress: Array<number>
+}
+
+type MapDispatchPropsType = {
+  unfollowThunk: () => void
+  getUsers: (currentPage: number, pageSize: number) => void
+  followThunk: () => void
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType
+
+const UsersContainer: React.FC<PropsType> = (props) => {
   useEffect(() => {
     props.getUsers(props.currentPage, props.pageSize)
   }, [props.currentPage, props.pageSize])
@@ -42,7 +56,7 @@ const UsersContainer = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
   return {
     usersList: getUsersList(state),
     pageSize: getPageSize(state),
@@ -53,8 +67,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {
-  toggleFollowingInProgress,
+export default connect<MapStatePropsType, MapDispatchPropsType>(mapStateToProps, {
   getUsers,
   followThunk,
   unfollowThunk,

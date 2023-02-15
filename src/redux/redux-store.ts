@@ -3,11 +3,11 @@ import { combineReducers } from '@reduxjs/toolkit'
 import { applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunkMiddleware from 'redux-thunk'
-import profileReducer from './ProfileReducer'
-import dialogReducer from './DialogReducer'
-import sidebarReducer from './sidebarReducer'
-import usersPageReducer from './usersPageReducer'
-import authReducer from './authReducer'
+import profileReducer from './ProfileReducer.ts'
+import dialogReducer from './DialogReducer.ts'
+import sidebarReducer from './sidebarReducer.ts'
+import usersPageReducer from './usersPageReducer.ts'
+import authReducer from './authReducer.ts'
 import appReducer from './appReducer.ts'
 
 let reducers = combineReducers({
@@ -19,12 +19,16 @@ let reducers = combineReducers({
   app: appReducer,
 })
 
+type RootReducerType = typeof reducers
+export type AppStateType = ReturnType<RootReducerType>
+
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
 
 const store = configureStore(
   {
     reducer: reducers,
   },
+  // @ts-ignore
   composedEnhancer
 )
 
