@@ -1,4 +1,6 @@
-import { authAPI, securityAPI, ResultCodeEnum } from '../api/api.ts'
+import { ResultCodeEnum } from '../api/api.ts'
+import { authAPI } from '../api/auth-api.ts'
+import { securityAPI } from '../api/security-api.ts'
 
 const SET_USER_DATA = 'SET_USER_DATA'
 const IS_SUBMIT_SUCCES = 'IS_SUBMIT_SUCCES'

@@ -22,6 +22,12 @@ let reducers = combineReducers({
 type RootReducerType = typeof reducers
 export type AppStateType = ReturnType<RootReducerType>
 
+type PropertiesType<T> = T extends { [key: string]: infer U } ? U : never
+
+export type InferActionTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<
+  PropertiesType<T>
+>
+
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
 
 const store = configureStore(

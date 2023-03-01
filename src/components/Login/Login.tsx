@@ -1,8 +1,14 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { connect } from 'react-redux'
 import { setLogin } from '../../redux/authReducer.ts'
 import { useNavigate } from 'react-router-dom'
+
+type Inputs = {
+  email: string
+  password: string
+  captcha: any
+}
 
 const Login = ({ setLogin, isSubmitSucces, captchaURL }) => {
   // console.log(captchaURL)
@@ -14,8 +20,8 @@ const Login = ({ setLogin, isSubmitSucces, captchaURL }) => {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm()
-  const onSubmit = (data) => {
+  } = useForm<Inputs>()
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
     setLogin(data.email, data.password, true, () => navigate('/profile'), captcha)
     reset()
   }
@@ -53,7 +59,6 @@ const Login = ({ setLogin, isSubmitSucces, captchaURL }) => {
             <img src={captchaURL} alt={'captcha'} />
             <div>
               <input
-                name="captcha"
                 type="text"
                 placeholder="Enter symbols from  captcha"
                 {...register('captcha')}
