@@ -1,4 +1,5 @@
-import profileReducer, { addPostActionCreator } from './ProfileReducer'
+import profileReducer, { actions } from './ProfileReducer'
+import { ProfileType } from '../types/types'
 
 const state = {
   posts: [
@@ -7,11 +8,14 @@ const state = {
     { id: 3, message: "I'm learning react", likeAmount: 0 },
     { id: 4, message: 'Would you want to learn react?', likeAmount: 5 },
   ],
+  profile: null as ProfileType | null,
+  status: '',
+  newPostText: '',
 }
 
 it('length of posts should be incremented', () => {
   // 1. test data
-  const action = addPostActionCreator('something')
+  const action = actions.addPostActionCreator('something')
 
   // 2. action
   let newState = profileReducer({ state }, { action })
@@ -22,7 +26,7 @@ it('length of posts should be incremented', () => {
 
 it('message of new post should be correct', () => {
   // 1. test data
-  const action = addPostActionCreator('something else')
+  const action = actions.addPostActionCreator('something else')
 
   // 2. action
   let newState = profileReducer({ state }, { action })

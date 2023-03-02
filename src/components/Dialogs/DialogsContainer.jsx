@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { sendMessage } from '../../redux/DialogReducer.ts'
+import { actions } from '../../redux/DialogReducer.ts'
 import Dialogs from './Dialogs'
 
 const DialogsContainer = (props) => {
@@ -27,7 +27,7 @@ let mapStateToProps = (state) => {
 let mapDispathToProps = (dispatch) => {
   return {
     send: (body) => {
-      dispatch(sendMessage(body))
+      dispatch(actions.sendMessage(body))
     },
   }
 }

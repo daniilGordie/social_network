@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from '@reduxjs/toolkit'
-import { applyMiddleware } from 'redux'
+import { Action, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { ThunkAction } from 'redux-thunk'
 import thunkMiddleware from 'redux-thunk'
 import profileReducer from './ProfileReducer.ts'
 import dialogReducer from './DialogReducer.ts'
@@ -26,6 +27,13 @@ type PropertiesType<T> = T extends { [key: string]: infer U } ? U : never
 
 export type InferActionTypes<T extends { [key: string]: (...args: any[]) => any }> = ReturnType<
   PropertiesType<T>
+>
+
+export type BaseThunkType<A extends Action, R = Promise<void>> = ThunkAction<
+  R,
+  AppStateType,
+  unknown,
+  A
 >
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))

@@ -1,9 +1,8 @@
-import { AppStateType, InferActionTypes } from './redux-store'
+import { InferActionTypes, BaseThunkType } from './redux-store'
 import { UserType } from './../types/types'
 import { usersAPI } from '../../src/api/users-api.ts'
 import { updateObjInArray } from '../utils/objects-helpers'
 import { Dispatch } from 'redux'
-import { ThunkAction } from 'redux-thunk'
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -116,7 +115,8 @@ export const actions = {
     } as const),
 }
 
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes>
+type ThunkType = BaseThunkType<ActionTypes>
+
 type DispatchType = Dispatch<ActionTypes>
 
 export const getUsers = (currentPage: number, pageSize: number): ThunkType => {
