@@ -1,5 +1,5 @@
 import React from 'react'
-import Contact from './../Contacts/Contact'
+import Contact from './../Contacts/Contact.tsx'
 
 const ProfileData = ({ profile, isOwner, goToEditMode }) => {
   return (

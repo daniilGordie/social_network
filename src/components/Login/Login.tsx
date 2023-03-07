@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import { connect } from 'react-redux'
 import { setLogin } from '../../redux/authReducer.ts'
 import { useNavigate } from 'react-router-dom'
+import { AppStateType } from '../../redux/redux-store'
 
 type Inputs = {
   email: string
@@ -11,7 +12,6 @@ type Inputs = {
 }
 
 const Login = ({ setLogin, isSubmitSucces, captchaURL }) => {
-  // console.log(captchaURL)
   const navigate = useNavigate()
 
   const {
@@ -72,7 +72,7 @@ const Login = ({ setLogin, isSubmitSucces, captchaURL }) => {
   )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
   isSubmitSucces: state.auth.isSubmitSucces,
   captchaURL: state.auth.captchaURL,
 })

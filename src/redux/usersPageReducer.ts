@@ -1,16 +1,16 @@
 import { InferActionTypes, BaseThunkType } from './redux-store'
 import { UserType } from './../types/types'
 import { usersAPI } from '../../src/api/users-api.ts'
-import { updateObjInArray } from '../utils/objects-helpers'
+import { updateObjInArray } from '../utils/objects-helpers.ts'
 import { Dispatch } from 'redux'
 
-const FOLLOW = 'FOLLOW'
-const UNFOLLOW = 'UNFOLLOW'
-const SET_USERS = 'SET_USERS'
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
-const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
+const FOLLOW = 'sn/users/FOLLOW'
+const UNFOLLOW = 'sn/users/UNFOLLOW'
+const SET_USERS = 'sn/users/SET_USERS'
+const SET_CURRENT_PAGE = 'sn/users/SET_CURRENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'sn/users/SET_TOTAL_USERS_COUNT'
+const TOGGLE_IS_FETCHING = 'sn/users/TOGGLE_IS_FETCHING'
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'sn/users/TOGGLE_IS_FOLLOWING_PROGRESS'
 
 const initialState = {
   usersList: [] as Array<UserType>,

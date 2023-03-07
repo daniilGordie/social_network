@@ -11,7 +11,7 @@ import {
   getIsFetching,
   getFollowingInProgress,
 } from '../../redux/users-selector.ts'
-import Preloader from '../common/Preloader/Preloader'
+import Preloader from '../common/Preloader/Preloader.tsx'
 import { UserType } from '../../types/types'
 
 type MapStatePropsType = {

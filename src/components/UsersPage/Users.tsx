@@ -1,7 +1,7 @@
 import React from 'react'
 import { UserType } from '../../types/types'
 import Paginator from '../Paginator/Paginator.tsx'
-import User from './User/User'
+import User from './User/User.tsx'
 
 type PropsType = {
   usersList: Array<UserType>

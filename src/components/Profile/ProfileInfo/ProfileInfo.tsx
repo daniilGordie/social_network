@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Preloader from '../../common/Preloader/Preloader'
+import Preloader from '../../common/Preloader/Preloader.tsx'
 import s from './ProfileInfo.module.css'
-import ProfileStatus from './ProfileStatus'
-import ProfileData from './ProfileData/ProfileData'
+import ProfileStatus from './ProfileStatus.tsx'
+import ProfileData from './ProfileData/ProfileData.tsx'
 import terminator from './../../../assets/4837857.png'
-import ProfileDataForm from './ProfileDataForm/ProfileDataForm'
+import ProfileDataForm from './ProfileDataForm/ProfileDataForm.tsx'
 
 function ProfileInfo({
   status,

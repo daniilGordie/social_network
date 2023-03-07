@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Profile from './Profile'
+import Profile from './Profile.tsx'
 import { connect } from 'react-redux'
 import {
   getUserProfile,

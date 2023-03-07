@@ -1,14 +1,23 @@
 import React from 'react'
 import s from './Dialogs.module.css'
+import InitialStateType from './../../redux/DialogReducer'
+import Message from './Message/Message.tsx'
+import DialogItem from './DialogItem/DialogItem.tsx'
+import { useForm, SubmitHandler } from 'react-hook-form'
 
-import Message from './Message/Messsage'
-import DialogItem from './DialogItem/DialogItem'
-import { useForm } from 'react-hook-form'
+type PropsType = {
+  dialogPage: typeof InitialStateType
+  send: (data: string) => void
+}
 
-const Dialogs = (props) => {
+type Input = {
+  message: string
+}
+
+const Dialogs: React.FC<PropsType> = (props) => {
   const state = props.dialogPage
 
-  let dialogsElements = state.dialogData.map((dialog) => (
+  let dialogsElements = state.dialogData.map((dialog: any) => (
     <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} />
   ))
 
@@ -25,12 +34,12 @@ const Dialogs = (props) => {
   )
 }
 const AddMessageForm = (props) => {
-  const onSubmit = (data) => {
+  const onSubmit: SubmitHandler<Input> = (data) => {
     props.send(data)
     reset()
   }
 
-  const { register, handleSubmit, reset } = useForm()
+  const { register, handleSubmit, reset } = useForm<Input>()
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

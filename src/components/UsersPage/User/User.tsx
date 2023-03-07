@@ -2,8 +2,16 @@ import React from 'react'
 import s from './User.module.css'
 import { NavLink } from 'react-router-dom'
 import terminator from './../../../assets/4837857.png'
+import UserType from './../../../types/types.ts'
 
-const User = ({ followingInProgress, unfollowThunk, followThunk, user }) => {
+type PropsType = {
+  user: UserType
+  followingInProgress: Array<number>
+  unfollowThunk: (id: number) => void
+  followThunk: (id: number) => void
+}
+
+const User: React.FC<PropsType> = ({ followingInProgress, unfollowThunk, followThunk, user }) => {
   return (
     <div>
       <span>

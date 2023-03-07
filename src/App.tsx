@@ -3,18 +3,24 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './App.css'
 
-import HeaderContainer from './components/Header/HeaderContainer'
-import NavBar from './components/NavBar/NavBar'
+import HeaderContainer from './components/Header/HeaderContainer.tsx'
+import NavBar from './components/NavBar/NavBar.tsx'
 import UsersPageContainer from './components/UsersPage/UsersPageContainer.tsx'
-import Admin from './components/Admin/Admin'
-import Music from './components/Music/Music'
-import News from './components/News/News'
+import Admin from './components/Admin/Admin.tsx'
+import Music from './components/Music/Music.tsx'
+import News from './components/News/News.tsx'
 import LoginPage from './components/Login/Login.tsx'
-import DialogsContainer from './components/Dialogs/DialogsContainer'
-import ProfileContainer from './components/Profile/ProfileContainer'
+import DialogsContainer from './components/Dialogs/DialogsContainer.tsx'
+import ProfileContainer from './components/Profile/ProfileContainer.tsx'
 import { initializeApp } from './redux/appReducer.ts'
+import { AppStateType } from './redux/redux-store'
 
-function App(props) {
+type MapPropsType = ReturnType<typeof mapStateToProps>
+type DispatchPropsType = {
+  initializeApp: () => void
+}
+
+const App: React.FC<MapPropsType & DispatchPropsType> = () => {
   useEffect(() => {
     initializeApp()
   })
@@ -41,7 +47,7 @@ function App(props) {
   )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
   initialized: state.app.initialized,
 })
 

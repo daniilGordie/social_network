@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { actions } from '../../redux/DialogReducer.ts'
-import Dialogs from './Dialogs'
+import Dialogs from './Dialogs.tsx'
+import { AppStateType } from '../../redux/redux-store'
 
 const DialogsContainer = (props) => {
   const navigate = useNavigate()
@@ -17,7 +18,7 @@ const DialogsContainer = (props) => {
   return <Dialogs {...props} />
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType) => {
   return {
     dialogPage: state.dialogPage,
     isAuth: state.auth.isAuth,

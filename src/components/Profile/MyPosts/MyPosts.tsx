@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './MyPosts.module.css'
-import Post from './Post/Post'
+import Post from './Post/Post.tsx'
 
 function MyPosts(props) {
   let postElements = props.posts.map((p) => (
@@ -24,11 +24,7 @@ function MyPosts(props) {
         <h3>My posts</h3>
       </div>
       <div>
-        <textarea
-          onChange={onPostChange}
-          ref={newPostElem}
-          value={props.newPostText}
-        />
+        <textarea onChange={onPostChange} ref={newPostElem} value={props.newPostText} />
       </div>
       <div>
         <button onClick={onAddPost}>Add Post</button>
