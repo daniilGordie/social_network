@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import Users from './Users.tsx'
 import { AppStateType } from './../../redux/redux-store.ts'
-import { getUsers, followThunk, unfollowThunk } from '../../redux/usersPageReducer.ts'
+import { getUsers, followThunk, unfollowThunk } from '../../redux/users-reducer.ts'
 import {
   getUsersList,
   getPageSize,

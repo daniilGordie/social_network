@@ -4,12 +4,12 @@ import { Action, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { ThunkAction } from 'redux-thunk'
 import thunkMiddleware from 'redux-thunk'
-import profileReducer from './ProfileReducer.ts'
-import dialogReducer from './DialogReducer.ts'
+import profileReducer from './profile-reducer.ts'
+import dialogReducer from './dialog-reducer.ts'
 import sidebarReducer from './sidebarReducer.ts'
-import usersPageReducer from './usersPageReducer.ts'
-import authReducer from './authReducer.ts'
-import appReducer from './appReducer.ts'
+import usersPageReducer from './users-reducer.ts'
+import authReducer from './auth-reducer.ts'
+import appReducer from './app-reducer.ts'
 
 let reducers = combineReducers({
   profilePage: profileReducer,

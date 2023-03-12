@@ -1,7 +1,14 @@
 import React from 'react'
 import Contact from './../Contacts/Contact.tsx'
+import ProfileType from './../../../../types/types.ts'
 
-const ProfileData = ({ profile, isOwner, goToEditMode }) => {
+type PropsType = {
+  profile: ProfileType
+  isOwner: boolean
+  goToEditMode: () => void
+}
+
+const ProfileData: React.FC<PropsType> = ({ profile, isOwner, goToEditMode }) => {
   return (
     <div>
       <div>{isOwner && <button onClick={goToEditMode}>Edit Profile</button>}</div>

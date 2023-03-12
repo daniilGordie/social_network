@@ -1,9 +1,10 @@
 import React from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { connect } from 'react-redux'
-import { setLogin } from '../../redux/authReducer.ts'
-import { useNavigate } from 'react-router-dom'
+import { setLogin } from '../../redux/auth-reducer.ts'
 import { AppStateType } from '../../redux/redux-store'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 type Inputs = {
   email: string
@@ -11,21 +12,29 @@ type Inputs = {
   captcha: any
 }
 
-const Login = ({ setLogin, isSubmitSucces, captchaURL }) => {
-  const navigate = useNavigate()
+type PropsType = {
+  setLogin: (email: string, password: string, captchaURL: string) => void
+}
+
+const Login: React.FC<PropsType> = ({ setLogin }) => {
+  const nav = useNavigate()
+  const captchaUrl = useSelector((state: AppStateType) => state.auth.captchaUrl)
+  const isAuth = useSelector((state: AppStateType) => state.auth.isAuth)
 
   const {
     register,
     reset,
-    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    setLogin(data.email, data.password, true, () => navigate('/profile'), captcha)
+    setLogin(data.email, data.password, data.captcha)
     reset()
   }
-  const captcha = () => watch('captcha')
+
+  if (isAuth) {
+    nav('/profile')
+  }
 
   return (
     <div>
@@ -49,14 +58,14 @@ const Login = ({ setLogin, isSubmitSucces, captchaURL }) => {
           <input placeholder="password" {...register('password')} />
           <div>{errors.password && <span>This field is required</span>}</div>
         </div>
-        {isSubmitSucces || (
+        {!!errors && (
           <div>
             <span>Login or password is incorrect</span>
           </div>
         )}
-        {captchaURL && (
+        {captchaUrl && (
           <div>
-            <img src={captchaURL} alt={'captcha'} />
+            <img src={captchaUrl} alt={'captcha'} />
             <div>
               <input
                 type="text"
@@ -73,7 +82,6 @@ const Login = ({ setLogin, isSubmitSucces, captchaURL }) => {
 }
 
 const mapStateToProps = (state: AppStateType) => ({
-  isSubmitSucces: state.auth.isSubmitSucces,
-  captchaURL: state.auth.captchaURL,
+  captchaUrl: state.auth.captchaUrl,
 })
 export default connect(mapStateToProps, { setLogin })(Login)

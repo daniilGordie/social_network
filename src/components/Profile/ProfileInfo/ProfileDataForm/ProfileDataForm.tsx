@@ -1,15 +1,34 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import s from './ProfileDataForm.module.css'
+import ProfileType from './../../../types/types.ts'
 
-const ProfileDataForm = ({ goOutFromEditMode, saveProfileData }) => {
+type Inputs = {
+  FullName: string
+  lookingForAJob: string
+  LookingForAJobDescription: string
+  AboutMe: string
+  'contacts.GitHub': string
+  'contacts.LinkedIn': string
+  'contacts.Facebook': string
+  'contacts.Instagram': string
+  'contacts.Twitter': string
+  'contacts.Website': string
+}
+
+type PropsType = {
+  goOutFromEditMode: () => void
+  saveProfileData: (profile: ProfileType) => Promise<any>
+}
+
+const ProfileDataForm: React.FC<PropsType> = ({ goOutFromEditMode, saveProfileData }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
-  const onSubmit = (data) => {
-    saveProfileData(data).then(() => {
+  } = useForm<Inputs>()
+  const onSubmit: SubmitHandler<Inputs> = (profile) => {
+    saveProfileData(profile).then(() => {
       goOutFromEditMode()
     })
   }
@@ -22,22 +41,20 @@ const ProfileDataForm = ({ goOutFromEditMode, saveProfileData }) => {
           className={s.profile_form_input}
           type="text"
           placeholder="Full Name"
-          name="fullName"
-          {...register('fullName', { required: true })}
+          {...register('FullName', { required: true })}
         />
       </div>
-      {errors.input1 && <span className={s.form_text}>This field is required</span>}
+      {errors.FullName && <span className={s.form_text}>This field is required</span>}
 
       <div>
         <b>Looking for a job:</b>
         <input
           className={s.profile_form_input}
           type="checkbox"
-          name="lookingForAJob"
           {...register('lookingForAJob', { required: true })}
         />
       </div>
-      {errors.input2 && <span className={s.form_text}>This field is required</span>}
+      {errors.lookingForAJob && <span className={s.form_text}>This field is required</span>}
 
       <div>
         <b>My professional skills:</b>
@@ -45,11 +62,12 @@ const ProfileDataForm = ({ goOutFromEditMode, saveProfileData }) => {
           className={s.profile_form_input}
           type="text"
           placeholder="Please describe your skills"
-          name="lookingForAJobDescription"
-          {...register('lookingForAJobDescription', { required: true })}
+          {...register('LookingForAJobDescription', { required: true })}
         />
       </div>
-      {errors.input3 && <span className={s.form_text}>This field is required</span>}
+      {errors.LookingForAJobDescription && (
+        <span className={s.form_text}>This field is required</span>
+      )}
 
       <div>
         <b>About me:</b>
@@ -57,18 +75,16 @@ const ProfileDataForm = ({ goOutFromEditMode, saveProfileData }) => {
           className={s.profile_form_input}
           type="text"
           placeholder="Tell about yourself"
-          name="aboutMe"
-          {...register('aboutMe', { required: true })}
+          {...register('AboutMe', { required: true })}
         />
       </div>
-      {/* {errors.input5 && <span className={s.form_text}>This field is required</span>} */}
+      {errors.AboutMe && <span className={s.form_text}>This field is required</span>}
       <div>
         <b>GitHub:</b>
         <input
           className={s.profile_form_contact_input}
           type="text"
           placeholder="GitHub"
-          name="contacts.GitHub"
           {...register('contacts.GitHub', { required: false })}
         />
       </div>
@@ -80,7 +96,6 @@ const ProfileDataForm = ({ goOutFromEditMode, saveProfileData }) => {
           className={s.profile_form_contact_input}
           type="text"
           placeholder="LinkedIn"
-          name="contacts.LinkedIn"
           {...register('contacts.LinkedIn', { required: false })}
         />
       </div>
@@ -92,7 +107,6 @@ const ProfileDataForm = ({ goOutFromEditMode, saveProfileData }) => {
           className={s.profile_form_contact_input}
           type="text"
           placeholder="Facebook"
-          name="contacts.Facebook"
           {...register('contacts.Facebook', { required: false })}
         />
       </div>
@@ -104,7 +118,6 @@ const ProfileDataForm = ({ goOutFromEditMode, saveProfileData }) => {
           className={s.profile_form_contact_input}
           type="text"
           placeholder="Instagram"
-          name="contacts.Instagram"
           {...register('contacts.Instagram', { required: false })}
         />
       </div>
@@ -116,7 +129,6 @@ const ProfileDataForm = ({ goOutFromEditMode, saveProfileData }) => {
           className={s.profile_form_contact_input}
           type="text"
           placeholder="Twitter"
-          name="contacts.Twitter"
           {...register('contacts.Twitter', { required: false })}
         />
       </div>
@@ -128,7 +140,6 @@ const ProfileDataForm = ({ goOutFromEditMode, saveProfileData }) => {
           className={s.profile_form_contact_input}
           type="text"
           placeholder="Website"
-          name="contacts.Website"
           {...register('contacts.Website', { required: false })}
         />
       </div>

@@ -1,6 +1,5 @@
-import { instanse } from './api.ts'
+import { instanse, GetItemsType, ResponseType } from './api.ts'
 import { profileAPI } from './profile-api.ts'
-import { GetItemsType, ResponseType } from './api.ts'
 import { AxiosPromise } from 'axios'
 
 export const usersAPI = {

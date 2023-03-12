@@ -18,7 +18,7 @@ const initialState = {
     { id: 2, name: 'Dimasic' },
     { id: 3, name: 'Dima' },
   ] as Array<DialogType>,
-  messagesData: [
+  messages: [
     { id: '1', message: 'Hi' },
     { id: '2', message: 'How are you' },
     { id: '3', message: 'Ready-Go' },
@@ -29,26 +29,20 @@ export type InitialStateType = typeof initialState
 type ActionTypes = InferActionTypes<typeof actions>
 
 export const dialogReducer = (state = initialState, action: ActionTypes): InitialStateType => {
-  const dialogState = {
-    ...state,
-    messagesData: [...state.messagesData],
-  }
-  // dialogState.messagesData = [...state.messagesData]
-
   switch (action.type) {
     case SEND_MESSAGE:
-      dialogState.messagesData.push({ id: 'someID', message: action.message })
-      return dialogState
+      return { ...state, messages: [...state.messages, { id: '6', message: action.message }] }
+
     default:
       return state
   }
 }
 
 export const actions = {
-  sendMessage: (text: string) =>
+  sendMessage: (message: string) =>
     ({
       type: SEND_MESSAGE,
-      message: text,
+      message,
     } as const),
 }
 

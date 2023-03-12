@@ -7,16 +7,29 @@ import {
   updateCurrentStatus,
   savePhoto,
   saveProfileData,
-} from '../../redux/ProfileReducer.ts'
+} from '../../redux/profile-reducer.ts'
 import { useParams } from 'react-router-dom'
+import ProfileType from './../../types/types.ts'
 
-const ProfileContainer = (props) => {
+type DispatchPropsType = {
+  getUserProfile: (id: number | null) => void
+  getStatus: (id: number | null) => void
+  updateCurrentStatus: (status: string) => void
+  savePhoto: (file: File) => void
+  saveProfileData: (profile: ProfileType) => void
+}
+
+type MapPropsType = ReturnType<typeof mapStateToProps>
+
+const ProfileContainer: React.FC<MapPropsType & DispatchPropsType> = (props) => {
   const { id } = useParams()
-  //|| 27328
+  const userID = props.profile?.userID
+  console.log(userID)
+
   useEffect(() => {
-    props.getUserProfile(id || 27328)
-    props.getStatus(id || 27328)
-  }, [id])
+    props.getUserProfile(id || userID)
+    props.getStatus(id || userID)
+  }, [id, userID])
   return (
     <Profile
       {...props}

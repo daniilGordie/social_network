@@ -12,7 +12,7 @@ import News from './components/News/News.tsx'
 import LoginPage from './components/Login/Login.tsx'
 import DialogsContainer from './components/Dialogs/DialogsContainer.tsx'
 import ProfileContainer from './components/Profile/ProfileContainer.tsx'
-import { initializeApp } from './redux/appReducer.ts'
+import { initializeApp } from './redux/app-reducer.ts'
 import { AppStateType } from './redux/redux-store'
 
 type MapPropsType = ReturnType<typeof mapStateToProps>

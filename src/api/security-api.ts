@@ -6,8 +6,6 @@ type GetCaptchaURLType = {
 
 export const securityAPI = {
   getCaptcha() {
-    return instanse.get<GetCaptchaURLType>(`security/get-captcha-url`, {
-      withCredentials: true,
-    })
+    return instanse.get<GetCaptchaURLType>(`security/get-captcha-url`).then((res) => res.data)
   },
 }

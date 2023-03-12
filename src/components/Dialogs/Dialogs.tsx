@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './Dialogs.module.css'
-import InitialStateType from './../../redux/DialogReducer'
+import InitialStateType from './../../redux/dialog-reducer'
 import Message from './Message/Message.tsx'
 import DialogItem from './DialogItem/DialogItem.tsx'
 import { useForm, SubmitHandler } from 'react-hook-form'
@@ -21,7 +21,7 @@ const Dialogs: React.FC<PropsType> = (props) => {
     <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} />
   ))
 
-  let messagesElements = state.messagesData.map((m) => <Message message={m.message} key={m.id} />)
+  let messagesElements = state.messages.map((m) => <Message message={m.message} key={m.id} />)
 
   return (
     <div className={s.dialogs}>
@@ -35,7 +35,7 @@ const Dialogs: React.FC<PropsType> = (props) => {
 }
 const AddMessageForm = (props) => {
   const onSubmit: SubmitHandler<Input> = (data) => {
-    props.send(data)
+    props.send(data.message)
     reset()
   }
 
