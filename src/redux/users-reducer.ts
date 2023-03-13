@@ -135,13 +135,13 @@ type ThunkType = BaseThunkType<ActionTypes>
 
 type DispatchType = Dispatch<ActionTypes>
 
-export const getUsers = (currentPage: number, pageSize: number, filter: FilterType): ThunkType => {
-  return async (dispatch: DispatchType) => {
+export const requestUsers = (page: number, pageSize: number, filter: FilterType): ThunkType => {
+  return async (dispatch, getState) => {
     dispatch(actions.toggleIsFetching(true))
-
-    const data = await usersAPI.getUsers(currentPage, pageSize)
-    dispatch(actions.setCurrentPage(currentPage))
+    dispatch(actions.setCurrentPage(page))
     dispatch(actions.setFilter(filter))
+
+    let data = await usersAPI.getUsers(page, pageSize, filter.term, filter.friend)
     dispatch(actions.toggleIsFetching(false))
     dispatch(actions.setUsers(data.items))
     dispatch(actions.setUserTotalCount(data.totalCount))
@@ -162,13 +162,13 @@ const _followUnfollowFlow = async (
   dispatch(actions.toggleFollowingInProgress(false, id))
 }
 
-export const followThunk = (id: number): ThunkType => {
+export const follow = (id: number): ThunkType => {
   return async (dispatch) => {
     _followUnfollowFlow(dispatch, id, usersAPI.follow.bind(usersAPI), actions.follow)
   }
 }
 
-export const unfollowThunk = (id: number): ThunkType => {
+export const unfollow = (id: number): ThunkType => {
   return async (dispatch) => {
     _followUnfollowFlow(dispatch, id, usersAPI.unfollow.bind(usersAPI), actions.unfollow)
   }
