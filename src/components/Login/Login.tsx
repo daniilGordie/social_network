@@ -10,10 +10,11 @@ type Inputs = {
   email: string
   password: string
   captcha: any
+  rememberMe: boolean
 }
 
 type PropsType = {
-  setLogin: (email: string, password: string, captchaURL: string) => void
+  setLogin: (email: string, password: string, rememberMe: boolean, captchaURL: string) => void
 }
 
 const Login: React.FC<PropsType> = ({ setLogin }) => {
@@ -28,7 +29,7 @@ const Login: React.FC<PropsType> = ({ setLogin }) => {
     formState: { errors },
   } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    setLogin(data.email, data.password, data.captcha)
+    setLogin(data.email, data.password, data.rememberMe, data.captcha)
     reset()
   }
 
@@ -57,6 +58,10 @@ const Login: React.FC<PropsType> = ({ setLogin }) => {
         <div>
           <input placeholder="password" {...register('password')} />
           <div>{errors.password && <span>This field is required</span>}</div>
+        </div>
+        <div>
+          <input type={'checkbox'} {...register('rememberMe')} />
+          <div>{errors.rememberMe && <span>This field is required</span>}</div>
         </div>
         {/* {!!errors && (
           <div>
