@@ -23,12 +23,12 @@ type MapPropsType = ReturnType<typeof mapStateToProps>
 
 const ProfileContainer: React.FC<MapPropsType & DispatchPropsType> = (props) => {
   const { id } = useParams()
-  const userID = props.profile?.userID
+  const userID = props.userID
   console.log(userID)
 
   useEffect(() => {
-    props.getUserProfile(id || userID)
-    props.getStatus(id || userID)
+    props.getUserProfile(userID || id)
+    props.getStatus(userID || id)
   }, [id, userID])
   return (
     <Profile
@@ -47,6 +47,7 @@ const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   isAuth: state.auth.isAuth,
   status: state.profilePage.status,
+  userID: state.auth.userID,
 })
 
 export default connect(mapStateToProps, {

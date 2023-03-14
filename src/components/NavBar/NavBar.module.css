@@ -10,6 +10,6 @@
   color: rgb(246, 240, 240);
 }
 
-.item a.active {
+.item a.activeLink {
   color: rgba(27, 25, 25, 0.633);
 }

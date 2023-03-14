@@ -12,11 +12,13 @@ import {
   getUsers,
   getUsersFilter,
 } from '../../redux/users-selector.ts'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 const querystring = require('querystring-es3')
+
 type PropsType = {}
 
 type QueryParamsType = { term?: string; page?: string; friend?: string }
+
 export const Users: FC<PropsType> = (props) => {
   const users = useSelector(getUsers)
   const totalUsersCount = useSelector(getTotalUsersCount)
@@ -26,10 +28,10 @@ export const Users: FC<PropsType> = (props) => {
   const followingInProgress = useSelector(getFollowingInProgress)
 
   const dispatch = useDispatch()
-  const history = useHistory()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    const parsed = querystring.parse(history.location.search.substr(1)) as QueryParamsType
+    const parsed = querystring.parse(navigate?.location?.search?.substr(1)) as QueryParamsType
 
     let actualPage = currentPage
     let actualFilter = filter
@@ -60,21 +62,24 @@ export const Users: FC<PropsType> = (props) => {
     if (filter.friend !== null) query.friend = String(filter.friend)
     if (currentPage !== 1) query.page = String(currentPage)
 
-    history.push({
+    navigate({
       pathname: '/developers',
       search: querystring.stringify(query),
     })
-  }, [filter, currentPage])
+  }, [filter, currentPage, navigate])
 
   const onPageChanged = (pageNumber: number) => {
     dispatch(requestUsers(pageNumber, pageSize, filter))
   }
+
   const onFilterChanged = (filter: FilterType) => {
     dispatch(requestUsers(1, pageSize, filter))
   }
+
   const follow = (userId: number) => {
     dispatch(follow(userId))
   }
+
   const unfollow = (userId: number) => {
     dispatch(unfollow(userId))
   }

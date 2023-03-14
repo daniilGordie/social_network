@@ -35,7 +35,7 @@ const App: React.FC<MapPropsType & DispatchPropsType> = () => {
             <Route path="profile/:id" element={<ProfileContainer />} />
             <Route path={'/dialogs/*'} element={<DialogsContainer />} />
             <Route path="music" element={<Music />} />
-            <Route path="users" element={<UsersPage />} />
+            <Route path="developers" element={<UsersPage pageTitle={'Developers'} />} />
             <Route path="news" element={<News />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="admin" element={<Admin />} />

@@ -58,11 +58,11 @@ const Login: React.FC<PropsType> = ({ setLogin }) => {
           <input placeholder="password" {...register('password')} />
           <div>{errors.password && <span>This field is required</span>}</div>
         </div>
-        {!!errors && (
+        {/* {!!errors && (
           <div>
             <span>Login or password is incorrect</span>
           </div>
-        )}
+        )} */}
         {captchaUrl && (
           <div>
             <img src={captchaUrl} alt={'captcha'} />
