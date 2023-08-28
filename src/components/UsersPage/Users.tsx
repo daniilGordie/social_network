@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react'
 import Paginator from './../Paginator/Paginator.tsx'
 import User from './User/User.tsx'
 import { UsersSearchForm } from './UsersSearchForm.tsx'
-import { FilterType, requestUsers } from '../../redux/users-reducer.ts'
+import { FilterType, requestUsers} from '../../redux/users-reducer.ts'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getCurrentPage,
@@ -76,14 +76,6 @@ export const Users: FC<PropsType> = (props) => {
     dispatch(requestUsers(1, pageSize, filter))
   }
 
-  const follow = (userId: number) => {
-    dispatch(follow(userId))
-  }
-
-  const unfollow = (userId: number) => {
-    dispatch(unfollow(userId))
-  }
-
   return (
     <div>
       <UsersSearchForm onFilterChanged={onFilterChanged} />
@@ -100,8 +92,6 @@ export const Users: FC<PropsType> = (props) => {
             user={u}
             followingInProgress={followingInProgress}
             key={u.id}
-            unfollow={unfollow}
-            follow={follow}
           />
         ))}
       </div>

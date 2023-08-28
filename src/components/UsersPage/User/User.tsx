@@ -3,15 +3,17 @@ import s from './User.module.css'
 import { NavLink } from 'react-router-dom'
 import terminator from './../../../assets/4837857.png'
 import UserType from './../../../types/types.ts'
+import { follow, unfollow } from './../../../redux/users-reducer.ts'
+
 
 type PropsType = {
   user: UserType
   followingInProgress: Array<number>
-  unfollow: (id: number) => any
-  follow: (id: number) => any
 }
 
-const User: React.FC<PropsType> = ({ followingInProgress, unfollow, follow, user }) => {
+const User: React.FC<PropsType> = ({ followingInProgress, user }) => {
+  const followG = follow(user.id)
+  const unfollowG = unfollow(user.id)
   return (
     <div>
       <span>
@@ -24,18 +26,18 @@ const User: React.FC<PropsType> = ({ followingInProgress, unfollow, follow, user
           {user.followed ? (
             <button
               disabled={followingInProgress.some((id) => id === user.id)}
-              onClick={() => {
-                unfollow(user.id)
-              }}
+              onClick={
+                unfollowG
+              }
             >
               UnFollow
             </button>
           ) : (
             <button
               disabled={followingInProgress.some((id) => id === user.id)}
-              onClick={() => {
-                follow(user.id)
-              }}
+              onClick={
+                followG
+              }
             >
               Follow
             </button>

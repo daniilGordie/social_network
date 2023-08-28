@@ -16,7 +16,9 @@ export enum ResultCodeEnum {
 export type GetItemsType = {
   items: Array<UserType>
   totalCount: number
-  error: string | null
+  error: string | null,
+  'filter.term': string, 
+  'filter.friend': string
 }
 
 export type ResponseType<D = {}, RC = ResultCodeEnum> = {
